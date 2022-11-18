@@ -1,0 +1,15 @@
+{
+  "name": "apitests",
+  "version": "1.0.0",
+  "description": "API Tests",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Prem Nepak",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^9.5.4",
+    "typescript": "^4.9.3"
+  }
+}
