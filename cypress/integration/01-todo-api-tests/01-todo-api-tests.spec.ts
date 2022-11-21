@@ -1,7 +1,7 @@
 
 import { todoNameGenerator } from "../../support/todoNameGenerator";
 
-let todoItemCreatedId = ''; 
+let todoItemCreatedId = '';
 let todoItemNameGenerated = '';
 
 
@@ -63,6 +63,9 @@ describe('ToDo List API Tests', () => {
       },
     }).then(response => {
       expect(response.status).eq(201);
+      const recordCount = response.body.length;
+      cy.log(recordCount);
+
     });
 
     //Get all todoItems and verify the above created item exists
@@ -102,4 +105,33 @@ describe('ToDo List API Tests', () => {
       expect(response.status).eq(204);
     });
   });
+
+  it('Mark all ToDo Items as Completed (PUT)', () => {
+   //Get all the todo items first and 
+   //then in the response drill individual todo items by id and 
+   //then mark completed in a loop
+    cy.request({
+      method: 'GET',
+      url: '/api/todoItems',
+    }).then(response => {
+
+      response.body.forEach((element: { id: string; description: any; }) => {
+        cy.log(element.id);
+        cy.request({
+          method: 'PUT',
+          url: `/api/todoItems/${element.id}`,
+          body: {
+            id: element.id,
+            description: element.description,
+            isCompleted: true
+          },
+        }).then(response => {
+          expect(response.status).eq(204);
+        });
+
+      });
+    });
+
+  });
+
 });
