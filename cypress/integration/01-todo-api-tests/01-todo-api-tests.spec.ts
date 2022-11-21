@@ -107,9 +107,9 @@ describe('ToDo List API Tests', () => {
   });
 
   it('Mark all ToDo Items as Completed (PUT)', () => {
-   //Get all the todo items first and 
-   //then in the response drill individual todo items by id and 
-   //then mark completed in a loop
+    //Get all the todo items first and 
+    //then in the response drill individual todo items by id and 
+    //then mark completed in a loop
     cy.request({
       method: 'GET',
       url: '/api/todoItems',
